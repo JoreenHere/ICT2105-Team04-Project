@@ -1,15 +1,22 @@
 package com.ict2105.ict2105_team04_2020
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.core.view.isVisible
 import com.google.android.material.textfield.TextInputLayout
 import com.ict2105.ict2105_team04_2020.DBHelper.AccountsDBHelper
 
 class MainActivity : AppCompatActivity() {
+
+    private val sharedPrefFile = "Account"
+    private lateinit var sharedPreferences : SharedPreferences
+    private lateinit var editor : SharedPreferences.Editor
 
     private var accountsDBHelper: AccountsDBHelper = AccountsDBHelper(this)
 
@@ -44,10 +51,16 @@ class MainActivity : AppCompatActivity() {
             if(errorMsg.isEmpty()){
                 var userType = accountsDBHelper.checkUserType(username, password)
 
-                if(userType == "User"){
-                    val intent = Intent(this, HomeActivity::class.java)
-                    startActivity(intent)
-                }
+                sharedPreferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+                editor =  sharedPreferences.edit()
+                editor.putString("username", username)
+                editor.putString("userType", userType)
+
+                editor.apply()
+                editor.commit()
+
+                val intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent)
             }
 
 
@@ -63,12 +76,12 @@ class MainActivity : AppCompatActivity() {
         var message = ""
 
         if(username.isEmpty() || password.isEmpty()){
-            message = "Incorrect username and password"
+            message = "Incorrect username or password"
         }else{
             var isValidLogin = accountsDBHelper.isLoginValid(username, password)
 
             if(!isValidLogin){
-                message = "Incorrect username and password"
+                message = "Incorrect username or password"
             }
         }
 

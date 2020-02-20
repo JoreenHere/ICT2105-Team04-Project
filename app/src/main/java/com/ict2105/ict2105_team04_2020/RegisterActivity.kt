@@ -78,7 +78,7 @@ class RegisterActivity : AppCompatActivity() {
                 account.phoneNumber = phoneNumber
                 account.rating = 0.0f
                 account.profileImage = convertBitMapToByteArray()
-                account.userType = "User"
+                account.userType = "Volunteer"
 
                 accountsDBHelper.insertAccount(account)
             }

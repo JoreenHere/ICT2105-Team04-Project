@@ -81,7 +81,7 @@ class AccountsDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         if(cursor!!.count == 1){
             result = true
 
-        }else if(cursor!!.count < 0 || cursor!!.count > 1){
+        }else if(cursor!!.count == 0 || cursor!!.count > 1){
             result = false
         }
 
