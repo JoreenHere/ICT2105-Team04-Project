@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_browse">
+
+    <fragment
+        android:id="@+id/navigation_browse"
+        android:name="com.ict2105.ict2105_team04_2020.ui.browse.BrowseFragment"
+        android:label="@string/title_browse"
+        tools:layout="@layout/fragment_browse" />
+
+    <fragment
+        android:id="@+id/navigation_category"
+        android:name="com.ict2105.ict2105_team04_2020.ui.category.CategoryFragment"
+        android:label="@string/title_category"
+        tools:layout="@layout/fragment_category" />
+
+    <fragment
+        android:id="@+id/navigation_organization"
+        android:name="com.ict2105.ict2105_team04_2020.ui.charityOrganization.CharityOrganizationFragment"
+        android:label="@string/title_organization"
+        tools:layout="@layout/fragment_organization" />
+
+    <fragment
+        android:id="@+id/navigation_me"
+        android:name="com.ict2105.ict2105_team04_2020.ui.me.MeFragment"
+        android:label="@string/title_me"
+        tools:layout="@layout/fragment_me" />
+</navigation>
